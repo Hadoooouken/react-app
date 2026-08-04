@@ -6,7 +6,7 @@ class EmployeesAddForm extends Component {
     super(props);
     this.state = {
       name: '',
-      salary: '0',
+      salary: 0,
     };
   }
 
@@ -24,15 +24,23 @@ class EmployeesAddForm extends Component {
       <div className="app-add-form">
         <h3>Добавьте нового сотрудника</h3>
         <form
-          onSubmit={(e) =>
-            addItem(
-              {
-                name: name,
-                salary: salary,
-              },
-              e,
-            )
-          }
+          onSubmit={(e) => {
+            e.preventDefault();
+            if (!name || !salary) {
+              alert('заполните данные');
+            } else {
+              addItem(
+                {
+                  name: name,
+                  salary: salary,
+                },
+              );
+              this.setState({
+                name: '',
+                salary: 0,
+              });
+            }
+          }}
           className="add-form d-flex"
         >
           <input
