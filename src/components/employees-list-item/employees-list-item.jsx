@@ -1,7 +1,9 @@
 import './employees-list-item.css';
 
 const EmployeesListItem = (props) => {
-  const { name, salary, onDelete, onToggleProp, increase, rise } = props;
+  const { name, salary, onDelete, onToggleProp, onUpdateSalary, increase, rise } = props;
+  console.log(onUpdateSalary);
+  
 
   return (
     <li
@@ -10,7 +12,7 @@ const EmployeesListItem = (props) => {
       <span className="list-group-item-label" onClick={onToggleProp} data-toggle="rise">
         {name}
       </span>
-      <input type="text" className="list-group-item-input" defaultValue={salary + '$'} />
+      <input onChange={onUpdateSalary} type="text" className="list-group-item-input" defaultValue={salary + '$'} />
       <div className="d-flex justify-content-center align-items-center">
         <button
           type="button"
